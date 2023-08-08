@@ -10,7 +10,6 @@ const Auth = () => {
     const [openalert, setOpenAlert] = useState(false);
     const [alertSeverity, setAlertSeverity] = useState('');
     const [alertMsg, setAlertMsg] = useState("");
-    const nameRef = useRef(null);
     const emailRef = useRef(null);
     const passwordRef = useRef(null);
 
@@ -25,8 +24,7 @@ const Auth = () => {
                 console.log(response)
                 setAlertMsg(response.data.msg);
                 localStorage.setItem('token', JSON.stringify(response.data.token));
-                
-                window.location.href = '/Store'
+                window.location.href = '/main'
 
             }
             else {
@@ -55,17 +53,19 @@ const Auth = () => {
         let SignUpObj = {};
         let LoginObj = {};
         if (!login) SignUpObj = {
-            name: nameRef.current.value,
+           
             email: emailRef.current.value,
             password: passwordRef.current.value
         }
         if (login) LoginObj = {
-            email: emailRef.current.value,
-            password: passwordRef.current.value
+            // email: emailRef.current.value,
+            // password: passwordRef.current.value
+            email: "sahilkumar2275@gmail.com",
+            password:"Sahil"
             
         }
         passwordRef.current.value = emailRef.current.value = "";
-        if (!login) nameRef.current.value = "";
+       
         login ? AuthHandler(LoginObj) : AuthHandler(SignUpObj)
     }
 
@@ -80,17 +80,17 @@ const Auth = () => {
 
                     <form className="  min-h-[400px] flex flex-col justify-evenly md:min-h-[500px] md:min-w-[400px]" action="" onSubmit={formSubmitHandler}>
                         <p className="font-serif text-4xl  tracking-[4px]">{login ? 'Login' : 'SignUp'}</p>
-                        {!login && <div className="flex flex-col  py-3 ">
+                        {/* {!login && <div className="flex flex-col  py-3 ">
                             <label >Name</label>
-                            <input ref={nameRef} className="text-center border-b-4 p-2 border-gray-400" type="text" required ></input>
-                        </div>}
+                            <input ref={nameRef} className="text-center border-b-4 p-2 border-gray-400" type="text"  ></input>
+                        </div>} */}
                         <div className="flex flex-col py-3">
                             <label>Email :</label>
-                            <input ref={emailRef} className="text-center border-b-4 p-2 border-gray-400" type="email" required ></input>
+                            <input ref={emailRef} className="text-center border-b-4 p-2 border-gray-400" type="email"  ></input>
                         </div>
                         <div className="flex flex-col py-3">
                             <label >Password</label>
-                            <input ref={passwordRef} className=" text-center border-b-4 p-2 border-gray-400" type="string" required ></input>
+                            <input ref={passwordRef} className=" text-center border-b-4 p-2 border-gray-400" type="string"  ></input>
                         </div>
 
 
