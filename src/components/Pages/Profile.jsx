@@ -1,13 +1,32 @@
-import React, { useRef } from 'react'
+import React, { useRef,useEffect } from 'react'
 import axios from 'axios';
 import Header from '../Header';
-import { useContext } from 'react';
-import { GlobalContext } from '../Context/gobalContext';
 
 const Profile = () => {
     const nameRef = useRef(null);
     const imageRef = useRef(null);
-    const { profileHandler } = useContext(GlobalContext);
+    useEffect(() => {
+        const getPrevProfileDB = async () => {
+            try {
+               
+                const token = JSON.parse(localStorage.getItem('token'));
+                const response = await axios.get('http://localhost:3006/users/profile/getProfile',{ headers: { "Authorization": token } });
+              
+                nameRef.current.value = response.data.data.name;
+
+
+            } catch (error) {
+                console.log(error);
+            }
+            
+        }
+        getPrevProfileDB();
+        
+    },[])
+
+
+    
+  
     const formSubmitHandler = async (e) => {
         e.preventDefault();
         try {
@@ -17,9 +36,8 @@ const Profile = () => {
             }
             const token = JSON.parse(localStorage.getItem('token'));
             await axios.post('http://localhost:3006/users/profile/complete', obj, { headers: { "Authorization": token } });
-            localStorage.setItem('name', JSON.stringify(nameRef.current.value));
-            profileHandler();
-            window.location.href = '/main';
+           
+          
         } catch (error) {
             console.log(error);
         }
@@ -60,7 +78,7 @@ const Profile = () => {
 
                         </div>
                         <div>
-                            <button className="hover:shadow-form w-full rounded-md bg-[#6A64F1] py-3 px-8 text-center text-base font-semibold text-white outline-none">
+                            <button className="hover:shadow-form w-full rounded-md bg-[#6A64F1] py-3 px-8 text-center text-base font-semibold text-white outline-none active:bg-blue-700">
                                 Send File
                             </button>
                         </div>
