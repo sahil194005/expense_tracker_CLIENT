@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import { Alert } from "@mui/material";
 import axios from "axios";
+import { NavLink } from 'react-router-dom'
 
 
 
@@ -10,8 +11,10 @@ const Auth = () => {
     const [openalert, setOpenAlert] = useState(false);
     const [alertSeverity, setAlertSeverity] = useState('');
     const [alertMsg, setAlertMsg] = useState("");
+    
     const emailRef = useRef(null);
     const passwordRef = useRef(null);
+
 
     const AuthHandler = async (obj) => {
         try {
@@ -53,7 +56,7 @@ const Auth = () => {
         let SignUpObj = {};
         let LoginObj = {};
         if (!login) SignUpObj = {
-           
+
             email: emailRef.current.value,
             password: passwordRef.current.value
         }
@@ -61,29 +64,20 @@ const Auth = () => {
             // email: emailRef.current.value,
             // password: passwordRef.current.value
             email: "sahilkumar2275@gmail.com",
-            password:"Sahil"
-            
+            password: "aman"
         }
         passwordRef.current.value = emailRef.current.value = "";
-       
+
         login ? AuthHandler(LoginObj) : AuthHandler(SignUpObj)
     }
-
-
     return (
         <div className="mt-[30px] flex flex-col items-center " >
             <p className=" text-6xl my-4 font-serif text-center">Welcome Back</p>
             <div className=" grid sm:grid-cols-2 sm:grid-rows-1 p-7 bg-gradient-to-r from-purple-400 to-purple-900 ... ">
                 <div className=" bg-white p-5 flex flex-col justify-evenly">
-
                     {openalert && <Alert severity={alertSeverity}>{alertMsg}!</Alert>}
-
                     <form className="  min-h-[400px] flex flex-col justify-evenly md:min-h-[500px] md:min-w-[400px]" action="" onSubmit={formSubmitHandler}>
                         <p className="font-serif text-4xl  tracking-[4px]">{login ? 'Login' : 'SignUp'}</p>
-                        {/* {!login && <div className="flex flex-col  py-3 ">
-                            <label >Name</label>
-                            <input ref={nameRef} className="text-center border-b-4 p-2 border-gray-400" type="text"  ></input>
-                        </div>} */}
                         <div className="flex flex-col py-3">
                             <label>Email :</label>
                             <input ref={emailRef} className="text-center border-b-4 p-2 border-gray-400" type="email"  ></input>
@@ -92,18 +86,17 @@ const Auth = () => {
                             <label >Password</label>
                             <input ref={passwordRef} className=" text-center border-b-4 p-2 border-gray-400" type="string"  ></input>
                         </div>
-
-
-
                         {!sendingReq && <button className="bg-purple-700 rounded-md focus:bg-purple-950 duration-700 text-white text-2xl p-2 text-center" >{login ? 'login' : 'signUp '}</button>}
                         {sendingReq && <button className="bg-purple-700 rounded-md hover:bg-purple-600 duration-700 text-white text-2xl p-2 text-center">sending Req</button>}
-
-
                     </form>
                     <div className="text-2xl p-2 text-center font-QuickSand " onClick={() => setLogin((state) => !state)}>
                         <button >{login ? 'New User??' : 'Already a member??'}
                             <p>Click Here</p></button>
                     </div>
+                    <NavLink to="/forgotPassword" className="text-1xl p-2 text-center text-blue-600" >
+                        Forgot Password ?
+                        Click Here
+                    </NavLink>
                 </div>
                 <div className=" hidden sm:block bg-white   ">
                     <img className="object-cover max-h-[650px] w-full " src="https://i.pinimg.com/564x/08/49/ec/0849ec3fae1337e159eefe1cb3232097.jpg" alt="" />
