@@ -1,11 +1,21 @@
+
 import React from 'react'
 import Header from '../Header'
+import ExpenseForm from '../ExpenseForm'
+
 const Main = () => {
+
+
   return (
-      <div>
+    <div >
       <Header />
-      <div>
-        Main
+      <div className='flex mt-9 '>
+        <div className='flex-1'>
+          <ExpenseForm />
+        </div>
+        <div className='flex-1'>
+
+        </div>
       </div>
     </div>
   )

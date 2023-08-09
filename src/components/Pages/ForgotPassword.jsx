@@ -10,12 +10,10 @@ const ForgotPassword = () => {
         e.preventDefault();
         try {
             let obj = {
-                // email: emailRef.current.value
-                email:"sahilkumar2275@gmail.com"
-                // email:"lyfesahil@gmail.com"
+                email: emailRef.current.value
             }
 
-           
+
             const response = await axios.post('http://localhost:3006/users/forgotPassword', obj);
             console.log(response);
             emailRef.current.value = "";
