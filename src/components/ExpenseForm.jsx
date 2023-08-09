@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { useRef, useState } from 'react'
 import { Alert } from '@mui/material';
 
-const ExpenseForm = () => {
+const ExpenseForm = (props) => {
     const amountRef = useRef(null);
     const descriptionRef = useRef(null);
     const categoryRef = useRef(null);
@@ -28,6 +28,8 @@ const ExpenseForm = () => {
             setTimeout(() => {
                 setOpenAlert(false);
             }, 5000)
+            props.setExpenses((state) => { return [...state, obj] })
+
 
         } catch (error) {
             console.log(error);
