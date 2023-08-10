@@ -1,12 +1,12 @@
 import axios from 'axios'
-import React, { useRef, useState } from 'react'
+import React, {  useState, useContext } from 'react'
 import { Alert } from '@mui/material';
-
+import { GlobalContext } from './Context/gobalContext';
 const ExpenseForm = (props) => {
-    const amountRef = useRef(null);
-    const descriptionRef = useRef(null);
-    const categoryRef = useRef(null);
-
+    const { amountRef,
+        descriptionRef,
+        categoryRef } = useContext(GlobalContext)
+    
     const [severity, setSeverity] = useState('');
     const [resMsg, setResMsg] = useState('');
     const [openAlert, setOpenAlert] = useState(false);

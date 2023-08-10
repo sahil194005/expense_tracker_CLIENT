@@ -1,17 +1,18 @@
-import React, { useState } from 'react'
+import React, { useRef } from 'react'
 
 
 export const GlobalContext = React.createContext();
 
 
 export const GlobalContextProvider = (props) => {
-    const [profileComplete, setProfileComplete] = useState(false);
-    const profileHandler = () => {
-        setProfileComplete(true);
-    }
+    const amountRef = useRef(null);
+    const descriptionRef = useRef(null);
+    const categoryRef = useRef(null);
+  
     let initVal = {
-        profileComplete,
-        profileHandler
+        amountRef,
+        descriptionRef,
+        categoryRef
     }
 
     return (

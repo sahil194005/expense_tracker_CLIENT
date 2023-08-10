@@ -13,6 +13,7 @@ const Main = () => {
         const token = JSON.parse(localStorage.getItem('token'));
         const response = await axios.get('http://localhost:3006/expenses/getExpenses',{headers:{"Authorization":token}})
         setExpenses(response.data.data);
+       
       } catch (error) {
         console.log(error);
       }
@@ -21,7 +22,7 @@ const Main = () => {
   },[]);
 
   const ExpensesArr = Expenses.map((expense) => {
-    return <SingleExpense key={expense._id} amount={expense.amount} description={expense.description} />
+    return <SingleExpense key={expense._id} amount={expense.amount} description={expense.description} userId={expense.userId} _id={expense._id} setExpenses={setExpenses} category={expense.category} />
   })
   return (
     <div className=''>
@@ -35,7 +36,6 @@ const Main = () => {
             <div className='border-b   p-2 h-[80px] flex justify-center text-3xl items-center border-t border-gray-400  '>
               <span className='p-3'>{<BsCalendar2Event />}</span>
               <span className='p-3'>Your Expenses History</span>
-              
             </div>
             {ExpensesArr}
           </div>
