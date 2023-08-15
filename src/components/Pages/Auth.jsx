@@ -98,7 +98,8 @@ const Auth = () => {
                     </NavLink>
                 </div>
                 <div className=" hidden sm:block bg-white   ">
-                    <img className="object-cover max-h-[650px] w-full " src="https://i.pinimg.com/564x/08/49/ec/0849ec3fae1337e159eefe1cb3232097.jpg" alt="" />
+                    <img className=" max-h-[700px] w-full " src="https://plus.unsplash.com/premium_photo-1681589452811-513d1952077c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=688&q=80" alt="" />
+                    {/* <img className="object-cover max-h-[650px] w-full " src="https://i.pinimg.com/564x/08/49/ec/0849ec3fae1337e159eefe1cb3232097.jpg" alt="" /> */}
 
                 </div>
             </div>

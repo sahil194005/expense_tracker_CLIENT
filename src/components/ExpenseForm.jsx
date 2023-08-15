@@ -5,7 +5,7 @@ import { GlobalContext } from './Context/gobalContext';
 const ExpenseForm = (props) => {
     const { amountRef,
         descriptionRef,
-        categoryRef } = useContext(GlobalContext)
+        categoryRef ,isDark} = useContext(GlobalContext)
     
     const [severity, setSeverity] = useState('');
     const [resMsg, setResMsg] = useState('');
@@ -43,7 +43,7 @@ const ExpenseForm = (props) => {
     }
     return (
         <div className="  w-full  flex items-center justify-center">
-            <div className="max-w-md border border-black  w-full min-h-[700px]  p-6 bg-white rounded-lg shadow-lg">
+            <div className={` max-w-md border border-black  w-full min-h-[700px]  p-6 bg-white rounded-lg shadow-lg ${isDark?'bg-gray-600':''}`}>
                 {openAlert && <Alert severity={severity}>{resMsg}</Alert>}
 
                 <h1 className="text-5xl font-semibold text-center text-gray-800 mt-8 mb-6">Expense Form</h1>
